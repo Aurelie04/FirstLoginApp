@@ -34,7 +34,11 @@ public class MainActivity extends AppCompatActivity {
                    if(username.getText().toString().equals("aurelie") && password.getText().toString().equals("helloWorld") ){
                        //Correct
                        Toast.makeText(MainActivity.this,"Login successful!",Toast.LENGTH_SHORT);
+                       //Go to second activity
+                        Intent intent = new Intent(MainActivity.this, UploadPicture.class);
+                        startActivity(intent);
 
+                        );
                    }else{
                        //Incorrect
                        Toast.makeText(MainActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
