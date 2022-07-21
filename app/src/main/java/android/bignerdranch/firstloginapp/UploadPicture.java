@@ -1,65 +1,54 @@
 package android.bignerdranch.firstloginapp;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
+import java.security.Permissions;
+import java.security.acl.Permission;
+
 public class UploadPicture extends AppCompatActivity {
-      ImageView profilePic;
+Button btn;
+ImageView imageProfile;
+int REQUEST_CODE = 12345;
+Boolean permissionGranted = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_picture);
-        profilePic = findViewById(R.id.profile);
-        profilePic.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
+
+
+        btn= findViewById(R.id.btnCamera);
+        imageProfile= findViewById(R.id.profile);
+
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean choose = true;
-                if(choose == true){
-                    if(!checkCameraPermission()){
-                        requestCameraPermission();
-                    }else chooseImage();
-
-                    }else{
-                          if(!checkStoratePermissiom()){
-                              requestStoragePermission();
-                          }else chooseImage();
-
-                }
-                }
+                checkPermission();
             }
         });
     }
 
-    private boolean checkCameraPermission(){
-          boolean resource1= ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED;
-          boolean resource2= ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED;
-
-         return resource1 && resource2;
-    }
-    private boolean checkStoratePermissiom(){
-        boolean resource2= ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED;
-
-        return resource2;
+    private void checkPermission() {
+        if(ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+            permissionGranted = true;
+        }else{
+        }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requestCameraPermission(){
-        requestPermissions(new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
-    }
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requestStoragePermission(){
-        requestPermissions(new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
-    }
-    private void  chooseImage(){
 
-    }
 }
