@@ -1,5 +1,9 @@
 package android.bignerdranch.firstloginapp;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 
 import android.Manifest;
+import android.bignerdranch.firstloginapp.databinding.ActivityMainBinding;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -22,32 +27,32 @@ import java.security.Permissions;
 import java.security.acl.Permission;
 
 public class UploadPicture extends AppCompatActivity {
-Button btn;
-ImageView imageProfile;
-int REQUEST_CODE = 12345;
-Boolean permissionGranted = false;
+    ActivityMainBinding binding;
+    ActivityResultLauncher<String> choosePicture;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_picture);
+        Button btnCamera =  findViewById(R.id.btnCamera);
+        ImageView profile = findViewById(R.id.profile);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        choosePicture = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                new ActivityResultCallback<Uri>() {
+                    @Override
+                    public void onActivityResult(Uri result){
+                        profile.setImageURI(result);
+                    }
+                }
+    
+        );
+      btnCamera.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              choosePicture.launch("image/*");
+          }
+      });
 
-
-        btn= findViewById(R.id.btnCamera);
-        imageProfile= findViewById(R.id.profile);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkPermission();
-            }
-        });
-    }
-
-    private void checkPermission() {
-        if(ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-            permissionGranted = true;
-        }else{
-        }
     }
 
 

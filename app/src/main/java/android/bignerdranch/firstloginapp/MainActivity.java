@@ -2,6 +2,7 @@ package android.bignerdranch.firstloginapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -37,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
                        //Go to second activity
                         Intent intent = new Intent(MainActivity.this, UploadPicture.class);
                         startActivity(intent);
-
-                        );
                    }else{
                        //Incorrect
                        Toast.makeText(MainActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
