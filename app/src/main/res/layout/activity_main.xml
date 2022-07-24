@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/Bckground"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <TextView
@@ -44,15 +44,19 @@
         android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:drawablePadding="20dp"
         android:inputType="textPassword"/>
-    <com.google.android.material.button.MaterialButton
+
+    <Button
+        android:id="@+id/loginbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginbtn"
         android:layout_below="@+id/password"
-        android:text="LOGIN"
-        android:backgroundTint="@color/design_default_color_secondary"
         android:layout_centerHorizontal="true"
-        android:layout_margin="40dp"/>
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:text="LOGIN" />
 
     <CheckBox
         android:id="@+id/checkbox"
@@ -103,7 +107,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/mine"
+            android:src="@drawable/img_2"
             android:layout_margin="20dp"/>
 
     </LinearLayout>

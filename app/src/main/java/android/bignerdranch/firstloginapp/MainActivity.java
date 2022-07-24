@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -16,7 +17,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
-
+private Button loginBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         TextView password = (TextView)  findViewById(R.id.password);
         CheckBox check = (CheckBox) findViewById(R.id.checkbox);
 
-        MaterialButton loginBtn = (MaterialButton) findViewById(R.id.loginbtn);
+        loginBtn = (Button) findViewById(R.id.loginbtn);
 
         //Test the button
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                        //Correct
                        Toast.makeText(MainActivity.this,"Login successful!",Toast.LENGTH_SHORT);
                        //Go to second activity
-                        Intent intent = new Intent(MainActivity.this, UploadPicture.class);
-                        startActivity(intent);
+                       openActivity2();
+
                    }else{
                        //Incorrect
                        Toast.makeText(MainActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
@@ -60,5 +61,10 @@ public class MainActivity extends AppCompatActivity {
               }
             }
         });
+    }
+
+    private void openActivity2() {
+        Intent intent = new Intent(this,UploadPicture.class);
+        startActivity(intent);
     }
 }
