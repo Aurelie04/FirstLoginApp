@@ -51,7 +51,7 @@ private Button loginBtn;
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-              if(isChecked){//The HideReturnsTransformationMethod returns any character to be hidden when displayingit
+              if(isChecked){//The HideReturnsTransformationMethod returns any character to be hidden when displaying it
                   //The TransformationMethod replaces characters with dots
                       password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());//Display password
 

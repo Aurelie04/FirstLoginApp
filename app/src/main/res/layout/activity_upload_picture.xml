@@ -10,10 +10,11 @@
     <ImageView
         android:id="@+id/profile"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="300dp"
         android:layout_centerInParent="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_baseline_person_outline_24" />
+        android:src="@drawable/img_2" />
+
 
     <Button
         android:id="@+id/btnCamera"
@@ -24,6 +25,16 @@
         android:layout_marginBottom="20dp"
         android:textAllCaps="false"
         android:text="Upload" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/profile"
+        android:layout_margin="20dp"
+        android:textSize="25dp"
+        android:text="Profile Picture" />
 
 
 </RelativeLayout>

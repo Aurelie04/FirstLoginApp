@@ -36,11 +36,13 @@ public class UploadPicture extends AppCompatActivity {
         ImageView profile = findViewById(R.id.profile);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        choosePicture = registerForActivityResult(
-                new ActivityResultContracts.GetContent(),
-                new ActivityResultCallback<Uri>() {
+        choosePicture = registerForActivityResult(//To use ActivityResultContracts and ActivityResultCallback and returns an ActivityResultLauncher
+        //Which is to set the profile or the picture
+                new ActivityResultContracts.GetContent(),//To prompt the user to pick one or more pieces of content, receiving a content;
+                new ActivityResultCallback<Uri>() {//Uri is for each piece of content that allows you to use android.
                     @Override
                     public void onActivityResult(Uri result){
+
                         profile.setImageURI(result);
                     }
                 }
@@ -49,6 +51,7 @@ public class UploadPicture extends AppCompatActivity {
       btnCamera.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
+
               choosePicture.launch("image/*");
           }
       });
