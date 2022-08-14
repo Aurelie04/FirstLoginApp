@@ -17,7 +17,6 @@ import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
-private Button loginBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,17 +26,18 @@ private Button loginBtn;
         TextView password = (TextView)  findViewById(R.id.password);
         CheckBox check = (CheckBox) findViewById(R.id.checkbox);
 
-        loginBtn = (Button) findViewById(R.id.loginbtn);
+        Button loginBtn = (Button) findViewById(R.id.loginbtn);
 
         //Test the button
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                   if(username.getText().toString().equals("aurelie") && password.getText().toString().equals("helloWorld") ){
+                   if(username.getText().toString().equals("aurelie") && password.getText().toString().equals("helloWorld")){
+                       //Go to second activity
+                        startActivity(new Intent(MainActivity.this,UploadPicture.class));
                        //Correct
                        Toast.makeText(MainActivity.this,"Login successful!",Toast.LENGTH_SHORT);
-                       //Go to second activity
-                       openActivity2();
+
 
                    }else{
                        //Incorrect
@@ -63,8 +63,5 @@ private Button loginBtn;
         });
     }
 
-    private void openActivity2() {
-        Intent intent = new Intent(this,UploadPicture.class);
-        startActivity(intent);
-    }
+
 }
